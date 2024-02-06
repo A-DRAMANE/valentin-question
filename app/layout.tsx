@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import "@/styles/transition.css"
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +17,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <main className="flex justify-center items-center h-[100vh] ">
+          <div className="bg-red-800 p-24 sm:w-[400px] w-full h-full flex flex-col items-center justify-between">
+          {children}
+          </div>
+        </main>
+      </body>
     </html>
   );
 }

@@ -9,9 +9,8 @@ interface props {
 
 function HomeAnnim({isEnd}:props) {
   return (
-    <div className="h-full justify-center items-center flex bg-black">
-        <Lottie onLoadStart={()=>console.log("la")
-        } size={5000}  animationData={valentin} loop={false} />
+    <div className="justify-center items-center flex ">
+        <Lottie onComplete={isEnd} size={5000}  animationData={valentin} loop={false} />
     </div>
   )
 }
