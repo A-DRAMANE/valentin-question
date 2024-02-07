@@ -3,3 +3,10 @@
     font-size: 1em;
     text-align: center;
 }
+
+.my-text-curv {
+    font-family: 'Dancing +Script';
+    font-size: 2em;
+    text-align: left;
+    padding: 5px;
+}
