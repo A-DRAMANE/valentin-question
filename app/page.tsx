@@ -15,7 +15,7 @@ export default function Home() {
   return (
     <>
       <HomeAnnim isEnd={isEnd}/>
-      {showButton&&<ButtonNext/>}
+      {showButton&&<ButtonNext root="slider"/>}
     </>
   );
 }
