@@ -14,24 +14,26 @@ export default function Home() {
     setShowButton(true)
   }
 
-  const decripText = async ()=>{
-    setIsLoad(true)
-    const geturl = await window.location.search;
-    const getTextEncrpt = await geturl.replace("?data=",'')
-    
-    try {
-      if (getTextEncrpt.length>0) {
-        const decryptedString= window.atob(getTextEncrpt)
-        await setData(decryptedString)
-        setIsDecript(true)
-      }
-      setIsLoad(false)
-    } catch (error) {
-    setIsLoad(false)
-    }
-  }
-
+  
   useEffect(() => {
+    
+    const decripText = async ()=>{
+      setIsLoad(true)
+      const geturl = await window.location.search;
+      const getTextEncrpt = await geturl.replace("?data=",'')
+      
+      try {
+        if (getTextEncrpt.length>0) {
+          const decryptedString= window.atob(getTextEncrpt)
+          await setData(decryptedString)
+          setIsDecript(true)
+        }
+        setIsLoad(false)
+      } catch (error) {
+      setIsLoad(false)
+      }
+    }
+
     decripText()
     
   }, []);

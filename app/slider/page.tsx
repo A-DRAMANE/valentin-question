@@ -14,12 +14,12 @@ function Page() {
     setLevel(level+1)
   }
   
-  const handleData = ()=>{
-    setMyData(getData())
-    setIsLoad(false)
-  }
-
+  
   useEffect(() => {
+    const handleData = ()=>{
+      setMyData(getData())
+      setIsLoad(false)
+    }
     handleData()
     // alert("Aucune de vos informations ne seront partagées, sauvegardées ou utilisées d'une quelconque manière.")
   }, []);

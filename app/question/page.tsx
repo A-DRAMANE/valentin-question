@@ -11,10 +11,12 @@ function Page() {
   const [btngap,setBtngap] = useState(2)
   const [myData,setMyData] = useState<false | dataInterface>()
   
-  const handleData = ()=>{
-    setMyData(getData())
-  }
   useEffect(() => {
+    
+    const handleData = ()=>{
+      setMyData(getData())
+    }
+
     handleData()
   }, []);
   
