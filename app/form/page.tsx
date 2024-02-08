@@ -2,16 +2,11 @@
 
 import FormAnnim from '@/annimations/FormAnnim'
 import React, { useEffect, useState } from 'react'
-import * as jwt from 'jsonwebtoken';
-import { myToken } from '@/constatants/text';
-
-interface phrase {
-  text:string,
-  id:number
-}
+import { phrase } from '@/interfaces';
 
 function page() {
   const [phrases,setphrases] = useState<phrase[] >([{text:"",id:0}])
+  const [nom,setnom] = useState<string>("")
   
   const handle = (text:any,id:Number)=>{
     let update = phrases
@@ -26,12 +21,12 @@ function page() {
   }
 
   const shareLink = ()=>{
-    const getString = JSON.stringify(phrases)
+    const getString = JSON.stringify({nom:nom,phrases:phrases})
     const getEncrip = encripText(getString)
     try {
       window.navigator.share({
         title: document.title,
-        text: "Hello, j'ai un petit méssage pour toi.",
+        text: "Le pain, j'ai un petit méssage pour toi.",
         url: getEncrip,
       });
       
@@ -41,7 +36,7 @@ function page() {
   }
 
   const copyLink = ()=>{
-    const getString = JSON.stringify(phrases)
+    const getString = JSON.stringify({nom:nom,phrases:phrases})
     const getEncrip = encripText(getString)
     try {
       navigator.clipboard.writeText(getEncrip)
@@ -52,18 +47,13 @@ function page() {
   }
 
   const encripText = (text:string)=>{
-    const encryptedString = jwt.sign(
-      { data: `${text}`},
-      `${myToken}`,
-      { expiresIn: '7d' }
-    );
-    return window.location.host+"/?data="+encryptedString;
+    const encryptedString = window.btoa(text);
+    const protocole = window.location.protocol;
+    return `${protocole}//${window.location.host}/?data=${encryptedString}`;
   }
 
   useEffect(() => {
-    console.log(window.location.host);
-    
-    // alert("Aucune de vos informations ne serons partager, sauvegarder ou utiliser d'une quelconque maniere.")
+    alert("Aucune de vos informations ne seront partagées, sauvegardées ou utilisées d'une quelconque manière.")
   }, []);
 
   return (
@@ -72,8 +62,8 @@ function page() {
       <FormAnnim/>
       <form className="max-w-sm mx-auto">
         <div className="mb-3">
-          <label htmlFor="name" className="block mb-2 text-sm font-medium text-white text-center">Le prénom de votre pain</label>
-          <input type="text" id="name" className="bg-gray-50 border rounded-full border-gray-300 text-gray-900 text-sm block w-full p-2.5" placeholder="mon papillon" required/>
+          <label htmlFor="name" className="my-title block mb-2 text-sm font-medium text-white text-center">Le prénom de votre pain</label>
+          <input value={nom} onChange={(value)=>setnom(value.target.value)} type="text" id="name" className="bg-gray-50 border rounded-full border-gray-300 text-gray-900 text-sm block w-full p-2.5" placeholder="mon papillon" required/>
         </div>
         <hr />
         <div className="mt-5">
@@ -89,7 +79,7 @@ function page() {
       </form>
 
       <div className="pt-3 flex flex-col justify-between gap-2">
-        <button onClick={shareLink} className={`bg-green-700 p-2 w-full h-[30%]`}>
+        <button onClick={shareLink} className={`bg-green-700 p-2 w-full h-[30%] text-white`}>
           PARTAGER
         </button>
         

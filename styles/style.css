@@ -1,4 +1,20 @@
+*{
+    font-family: 'Montserrat Alternates', sans-serif;
+}
 
+.my-title {
+    background: linear-gradient(90.33deg,#fff .11%,hsla(0,0%,100%,.62) 98.95%);
+    color: white;
+    background-clip: border-box;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -.02em;
+  line-height: 1em;
+  font-size: 3em;
+  font-weight: bold;
+  text-transform: capitalize;
+}
 
 .my-text {
     font-family: 'Montserrat Alternates', sans-serif;
@@ -14,7 +30,8 @@
 }
 
 .bacground{
-    background-image:   'url("/img/11952284_11_pattern.jpg")';
+    background-image: linear-gradient(rgba(145, 0, 0, 0.94), rgba(72, 11, 11, 0.86)),
+    url("../img/11952284_11_pattern.jpg");;
     background-size: cover;
     background-repeat: no-repeat;
 }
