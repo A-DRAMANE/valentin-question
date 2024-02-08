@@ -6,21 +6,21 @@ import { getData } from '@/storage/getStorage';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react'
 
-function page() {
-  const [btnSize,setbtnSize] = useState(1)
-  const [btngap,setbtngap] = useState(2)
-  const [myData,setmyData] = useState<false | dataInterface>()
+function Page() {
+  const [btnSize,setBtnSize] = useState(1)
+  const [btngap,setBtngap] = useState(2)
+  const [myData,setMyData] = useState<false | dataInterface>()
   
   const handleData = ()=>{
-    setmyData(getData())
+    setMyData(getData())
   }
   useEffect(() => {
     handleData()
   }, []);
   
   const handle = ()=>{
-    setbtngap(btngap+2)
-    setbtnSize(btnSize+.1)
+    setBtngap(btngap+2)
+    setBtnSize(btnSize+.1)
   }
 
   return (
@@ -44,4 +44,4 @@ function page() {
   )
 }
 
-export default page
+export default Page

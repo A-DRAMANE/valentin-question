@@ -2,22 +2,20 @@
 
 import HomeAnnim from "@/annimations/HomeAnnim";
 import ButtonNext from "@/components/buttons/ButtonNext";
-import { myToken } from "@/constatants/text";
 import { setData } from "@/storage/sentStorage";
-import * as jwt from 'jsonwebtoken';
 import { useEffect, useState } from "react";
 
 export default function Home() {
-  const [showButton, setshowButton] = useState(false)
-  const [isLoad, setisLoad] = useState(true)
-  const [isDecript, setisDecript] = useState(false)
+  const [showButton, setShowButton] = useState(false)
+  const [isLoad, setIsLoad] = useState(true)
+  const [isDecript, setIsDecript] = useState(false)
 
   const isEnd = ()=>{
-    setshowButton(true)
+    setShowButton(true)
   }
 
   const decripText = async ()=>{
-    setisLoad(true)
+    setIsLoad(true)
     const geturl = await window.location.search;
     const getTextEncrpt = await geturl.replace("?data=",'')
     
@@ -25,11 +23,11 @@ export default function Home() {
       if (getTextEncrpt.length>0) {
         const decryptedString= window.atob(getTextEncrpt)
         await setData(decryptedString)
-        setisDecript(true)
+        setIsDecript(true)
       }
-      setisLoad(false)
+      setIsLoad(false)
     } catch (error) {
-    setisLoad(false)
+    setIsLoad(false)
     }
   }
 

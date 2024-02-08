@@ -1,23 +1,22 @@
 "use client";
 import ButtonNext from '@/components/buttons/ButtonNext';
 import ButtonNextSlid from '@/components/buttons/ButtonNextSlid';
-import { slideText } from '@/constatants/text';
 import { dataInterface } from '@/interfaces';
 import { getData } from '@/storage/getStorage';
 import React, { useEffect, useState } from 'react'
 
-function page() {
+function Page() {
   const [level,setLevel] = useState(0)
-  const [isLoad,setisLoad] = useState(true)
-  const [myData,setmyData] = useState<false | dataInterface>()
+  const [isLoad,setIsLoad] = useState(true)
+  const [myData,setMyData] = useState<false | dataInterface>()
   
   const handle = ()=>{
     setLevel(level+1)
   }
   
   const handleData = ()=>{
-    setmyData(getData())
-    setisLoad(false)
+    setMyData(getData())
+    setIsLoad(false)
   }
 
   useEffect(() => {
@@ -49,4 +48,4 @@ function page() {
   )
 }
 
-export default page
+export default Page

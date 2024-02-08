@@ -2,12 +2,9 @@
 
 import ReponseAnnim from '@/annimations/ReponseAnnim';
 import ButtonNext from '@/components/buttons/ButtonNext';
-import { dataInterface } from '@/interfaces';
-import { getData } from '@/storage/getStorage';
 import React, { useEffect, useState } from 'react'
 
-function page() {
-  const [isLoad,setisLoad] = useState(true)
+function Page() {
 
   return (
     <div>
@@ -19,4 +16,4 @@ function page() {
   )
 }
 
-export default page
+export default Page

@@ -4,20 +4,20 @@ import FormAnnim from '@/annimations/FormAnnim'
 import React, { useEffect, useState } from 'react'
 import { phrase } from '@/interfaces';
 
-function page() {
-  const [phrases,setphrases] = useState<phrase[] >([{text:"",id:0}])
-  const [nom,setnom] = useState<string>("")
+function Page() {
+  const [phrases,setPhrases] = useState<phrase[] >([{text:"",id:0}])
+  const [nom,setNom] = useState<string>("")
   
   const handle = (text:any,id:Number)=>{
     let update = phrases
     const find = update.findIndex(text=> text.id==id)
     update[find].text = text.target.value
-    setphrases([...update])
+    setPhrases([...update])
   }
 
   const newText = ()=>{
     const newPhrase:phrase = {text:"",id:phrases.length}
-    setphrases([...phrases,newPhrase])
+    setPhrases([...phrases,newPhrase])
   }
 
   const shareLink = ()=>{
@@ -63,7 +63,7 @@ function page() {
       <form className="max-w-sm mx-auto">
         <div className="mb-3">
           <label htmlFor="name" className="my-title block mb-2 text-sm font-medium text-white text-center">Le prénom de votre pain</label>
-          <input value={nom} onChange={(value)=>setnom(value.target.value)} type="text" id="name" className="bg-gray-50 border rounded-full border-gray-300 text-gray-900 text-sm block w-full p-2.5" placeholder="mon papillon" required/>
+          <input value={nom} onChange={(value)=>setNom(value.target.value)} type="text" id="name" className="bg-gray-50 border rounded-full border-gray-300 text-gray-900 text-sm block w-full p-2.5" placeholder="mon papillon" required/>
         </div>
         <hr />
         <div className="mt-5">
@@ -89,4 +89,4 @@ function page() {
   )
 }
 
-export default page
+export default Page
