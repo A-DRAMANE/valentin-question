@@ -58,7 +58,6 @@ function Page() {
 
   return (
     <div className='w-full'>
-      {/* <MyWarning/> */}
       <FormAnnim/>
       <form className="max-w-sm mx-auto">
         <div className="mb-3">
