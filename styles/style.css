@@ -1,3 +1,5 @@
+
+
 .my-text {
     font-family: 'Montserrat Alternates', sans-serif;
     font-size: 1em;
@@ -9,4 +11,10 @@
     font-size: 2em;
     text-align: left;
     padding: 5px;
+}
+
+.bacground{
+    background-image:   'url("/img/11952284_11_pattern.jpg")';
+    background-size: cover;
+    background-repeat: no-repeat;
 }

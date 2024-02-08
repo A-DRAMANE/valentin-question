@@ -1,8 +1,9 @@
 "use client";
 
 import FormAnnim from '@/annimations/FormAnnim'
-import MyWarning from '@/components/alert/MyWarning';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import * as jwt from 'jsonwebtoken';
+import { myToken } from '@/constatants/text';
 
 interface phrase {
   text:string,
@@ -11,7 +12,6 @@ interface phrase {
 
 function page() {
   const [phrases,setphrases] = useState<phrase[] >([{text:"",id:0}])
-  const [btngap,setbtngap] = useState(2)
   
   const handle = (text:any,id:Number)=>{
     let update = phrases
@@ -26,16 +26,49 @@ function page() {
   }
 
   const shareLink = ()=>{
-    window.navigator.share({
-      title: document.title,
-      text: "Hello World",
-      url: "https://developer.mozilla.org",
-    });
+    const getString = JSON.stringify(phrases)
+    const getEncrip = encripText(getString)
+    try {
+      window.navigator.share({
+        title: document.title,
+        text: "Hello, j'ai un petit méssage pour toi.",
+        url: getEncrip,
+      });
+      
+    } catch (error) {
+      copyLink()
+    }
   }
+
+  const copyLink = ()=>{
+    const getString = JSON.stringify(phrases)
+    const getEncrip = encripText(getString)
+    try {
+      navigator.clipboard.writeText(getEncrip)
+      alert("Le lien à été copié avec succés, vous pouvez le partager")
+    } catch (error) {
+      alert("Oups nous n'arrivons pas à éffectué cette action")
+    }
+  }
+
+  const encripText = (text:string)=>{
+    const encryptedString = jwt.sign(
+      { data: `${text}`},
+      `${myToken}`,
+      { expiresIn: '7d' }
+    );
+    return window.location.host+"/?data="+encryptedString;
+  }
+
+  useEffect(() => {
+    console.log(window.location.host);
+    
+    // alert("Aucune de vos informations ne serons partager, sauvegarder ou utiliser d'une quelconque maniere.")
+  }, []);
 
   return (
     <div className='w-full'>
-      <MyWarning/>
+      {/* <MyWarning/> */}
       <FormAnnim/>
       <form className="max-w-sm mx-auto">
         <div className="mb-3">
@@ -52,9 +85,16 @@ function page() {
             </div>
           )}
         </div>
-        <p onClick={shareLink} className='cursor-pointer underline text-white text-right'>Ajouter un texte +</p>
+        <p onClick={newText} className='cursor-pointer underline text-white text-right'>Ajouter un texte +</p>
       </form>
 
+      <div className="pt-3 flex flex-col justify-between gap-2">
+        <button onClick={shareLink} className={`bg-green-700 p-2 w-full h-[30%]`}>
+          PARTAGER
+        </button>
+        
+        <button onClick={copyLink} className='bg-red-950 p-2 w-full text-white'>COPIER LE LIEN</button>
+      </div>
     </div>
   )
 }

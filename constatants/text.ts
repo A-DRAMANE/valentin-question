@@ -1,3 +1,5 @@
+export const myToken = "VALENTIN-APP"
+
 export const slideText = [
     {
         id:1,
