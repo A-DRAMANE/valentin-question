@@ -16,22 +16,25 @@ export default function Home() {
 
   
   useEffect(() => {
-    
+
     const decripText = async ()=>{
       setIsLoad(true)
-      const geturl = await window.location.search;
-      const getTextEncrpt = await geturl.replace("?data=",'')
-      
-      try {
-        if (getTextEncrpt.length>0) {
-          const decryptedString= window.atob(getTextEncrpt)
-          await setData(decryptedString)
-          setIsDecript(true)
+      if (typeof window !== 'undefined'){
+        const geturl = await window.location.search;
+        const getTextEncrpt = await geturl.replace("?data=",'')
+        
+        try {
+          if (getTextEncrpt.length>0) {
+            const decryptedString= window.atob(getTextEncrpt)
+            await setData(decryptedString)
+            setIsDecript(true)
+          }
+          setIsLoad(false)
+        } catch (error) {
+          setIsLoad(false)
         }
-        setIsLoad(false)
-      } catch (error) {
-      setIsLoad(false)
       }
+      setIsLoad(false)
     }
 
     decripText()

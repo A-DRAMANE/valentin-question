@@ -17,7 +17,9 @@ function Page() {
   
   useEffect(() => {
     const handleData = ()=>{
-      setMyData(getData())
+      if (typeof window !== 'undefined'){
+        setMyData(getData())
+      }
       setIsLoad(false)
     }
     handleData()

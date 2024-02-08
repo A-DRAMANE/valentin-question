@@ -12,9 +12,11 @@ function Page() {
   const [myData,setMyData] = useState<false | dataInterface>()
   
   useEffect(() => {
-    
+
     const handleData = ()=>{
-      setMyData(getData())
+      if (typeof window !== 'undefined'){
+        setMyData(getData())
+      }
     }
 
     handleData()
