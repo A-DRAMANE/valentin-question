@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { setData } from "../storage/sentStorage";
 import HomeAnnim from "../annimations/HomeAnnim";
 import ButtonNext from "../components/buttons/ButtonNext";
+import CryptoJS from 'crypto-js';
+import { myToken } from "../constatants/text";
 
 export default function Home() {
   const [showButton, setShowButton] = useState(false)
@@ -24,7 +26,8 @@ export default function Home() {
         
         try {
           if (getTextEncrpt.length>0) {
-            const decryptedString= window.atob(getTextEncrpt)
+            const decryptedString = CryptoJS.AES.decrypt(getTextEncrpt, myToken).toString(CryptoJS.enc.Utf8);
+            // const decryptedString= window.atob(getTextEncrpt)
             await setData(decryptedString)
             setIsDecript(true)
           }

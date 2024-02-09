@@ -3,6 +3,9 @@ import { phrase } from '../../interfaces'
 import FormAnnim from '../../annimations/FormAnnim'
 import AlertMy from '../../components/alert/Alert'
 import AlertMessage from '../../components/alert/AlertMessage'
+import CryptoJS from 'crypto-js';
+import { myToken } from '../../constatants/text'
+
 
 function FormComp() {
   const [phrases,setPhrases] = useState<phrase[] >([{text:"",id:0}])
@@ -55,7 +58,8 @@ function FormComp() {
   }
 
   const encripText = (text:string)=>{
-    const encryptedString = window.btoa(text);
+    const encryptedString = CryptoJS.AES.encrypt(text, myToken).toString();
+    // const encryptedString = window.btoa(text);
     const protocole = window.location.protocol;
     return `${protocole}//${window.location.host}/?data=${encryptedString}`;
   }
