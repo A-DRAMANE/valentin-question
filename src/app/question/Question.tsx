@@ -27,7 +27,7 @@ function Question() {
     setBtngap(btngap+2)
     setBtnSize(btnSize+.1)
     if (noIndex==4) {
-      setnoIndex(0)
+      setnoIndex(0) 
     }else{
       setnoIndex(noIndex=> noIndex + 1)
     }
