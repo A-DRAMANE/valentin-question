@@ -7,8 +7,24 @@
     <meta name="description" content="Célébrer l'amour cette Saint-Valentin ! Créez des souvenirs inoubliables, partagez des moments romantiques et trouvez l'inspiration pour rendre cette journée spéciale encore plus magique. ">
     <title>VaLentin Day</title>
   </head>
+  
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1ZQH7MX0T1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-1ZQH7MX0T1');
+  </script>
+
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+
+    <script>
+      window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
   </body>
 </html>
