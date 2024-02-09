@@ -44,9 +44,11 @@ function Question() {
         </div>
       </div>
       <div style={{gap:btngap}} className="pt-3 flex flex-col justify-between gap-2">
-        <div style={{scale: `${btnSize}`}} className={`bg-white flex justify-center items-center cursor-pointer font-bold p-2 w-full  rounded-full h-[${btnSize}%]`}>
-          <Link className='text-green-700 text-center w-full' to={"/reponse"}>OUI</Link>
-        </div>
+          <Link className='text-green-700 text-center w-full' to={"/reponse"}>
+        <button style={{scale: `${btnSize}`}} className={`bg-white flex justify-center items-center cursor-pointer font-bold p-2 w-full  rounded-full h-[${btnSize}%]`}>
+            OUI
+        </button>
+          </Link>
         
         <button onClick={handle} className='bg-red-300 font-bold p-2 w-full rounded-full text-red-600'>{noText[noIndex]}</button>
       </div>

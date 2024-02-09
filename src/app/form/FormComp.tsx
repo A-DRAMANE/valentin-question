@@ -66,8 +66,6 @@ function FormComp() {
 
   return (
     <div className='w-full'>
-      {isVisible&&<AlertMessage handle={handleMessage} text={message} />}
-      <AlertMy/>
       <FormAnnim/>
       <form className="max-w-sm mx-auto">
         <div className="mb-3">
@@ -87,13 +85,15 @@ function FormComp() {
         <p onClick={newText} className='cursor-pointer underline text-white text-right'>Ajouter un texte +</p>
       </form>
 
-      <div className="pt-3 flex flex-col justify-between gap-2">
+      <div className="pt-3 flex flex-col justify-between gap-2 relative z-50">
         <button onClick={shareLink} className={`bg-green-700 p-2 w-full h-[30%] text-white`}>
           PARTAGER
         </button>
         
         <button onClick={copyLink} className='bg-red-950 p-2 w-full text-white'>COPIER LE LIEN</button>
       </div>
+      {isVisible&&<AlertMessage handle={handleMessage} text={message} />}
+      <AlertMy/>
     </div>
   )
 }
