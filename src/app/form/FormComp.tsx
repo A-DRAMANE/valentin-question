@@ -2,10 +2,13 @@ import { useEffect, useState } from 'react'
 import { phrase } from '../../interfaces'
 import FormAnnim from '../../annimations/FormAnnim'
 import AlertMy from '../../components/alert/Alert'
+import AlertMessage from '../../components/alert/AlertMessage'
 
 function FormComp() {
   const [phrases,setPhrases] = useState<phrase[] >([{text:"",id:0}])
   const [nom,setNom] = useState<string>("")
+  const [message,setmessage] = useState<string>("")
+  const [isVisible,setisVisible] = useState<boolean>(false)
   
   const handle = (text:any,id:Number)=>{
     let update = phrases
@@ -17,6 +20,10 @@ function FormComp() {
   const newText = ()=>{
     const newPhrase:phrase = {text:"",id:phrases.length}
     setPhrases([...phrases,newPhrase])
+  }
+
+  const handleMessage = ()=>{
+    setisVisible(!isVisible)
   }
 
   const shareLink = ()=>{
@@ -39,9 +46,11 @@ function FormComp() {
     const getEncrip = encripText(getString)
     try {
       navigator.clipboard.writeText(getEncrip)
-      alert("Le lien à été copié avec succés, vous pouvez le partager")
+      setmessage('Le lien à été copié avec succés, vous pouvez le partager')
+      handleMessage()
     } catch (error) {
-      alert("Oups nous n'arrivons pas à éffectué cette action")
+      setmessage("Oups nous n'arrivons pas à éffectué cette action")
+      handleMessage()
     }
   }
 
@@ -57,6 +66,7 @@ function FormComp() {
 
   return (
     <div className='w-full'>
+      {isVisible&&<AlertMessage handle={handleMessage} text={message} />}
       <AlertMy/>
       <FormAnnim/>
       <form className="max-w-sm mx-auto">

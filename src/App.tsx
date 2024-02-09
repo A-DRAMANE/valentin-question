@@ -10,7 +10,7 @@ import Question from "./app/question/Question";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/*",
     element:  <Home />,
   },
   {
