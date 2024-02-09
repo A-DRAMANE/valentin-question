@@ -14,3 +14,11 @@ export const slideText = [
         text: "Chaque regard échangé entre nous est un poème silencieux, une histoire d'amour écrite dans le langage des regards."
     },
 ]
+
+export const noText = [
+    "NON",
+    "C'est pas possible",
+    "Ne me fait pas ça",
+    "Dis ouiiiiii",
+    "Je n'ai que toi",
+]

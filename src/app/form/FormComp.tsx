@@ -66,7 +66,7 @@ function FormComp() {
         </div>
         <hr />
         <div className="mt-5">
-          <label className="block mb-2 text-sm font-medium text-white text-center">Votre message</label>
+          <label className="block mb-2 text-sm font-medium text-white text-center">Vos messages</label>
           {phrases.map(text=>
             <div key={text.id} className="">
               <span className='text-xs text-white'>text {text.id+1}</span>
