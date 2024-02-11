@@ -30,17 +30,19 @@ function FormComp() {
   }
 
   const shareLink = ()=>{
-    const getString = JSON.stringify({nom:nom,phrases:phrases})
-    const getEncrip = encripText(getString)
+    const protocole = window.location.protocol;
+    const share = `${protocole}//${window.location.host}/`;
     try {
       window.navigator.share({
         title: document.title,
         text: "Le pain, j'ai un petit méssage pour toi.",
-        url: getEncrip,
+        url: share,
       });
       
     } catch (error) {
-      copyLink()
+      navigator.clipboard.writeText(share)
+      setmessage('Le lien à été copié avec succés, vous pouvez le partager')
+      handleMessage()
     }
   }
 
@@ -86,15 +88,15 @@ function FormComp() {
             </div>
           )}
         </div>
-        <p onClick={newText} className='cursor-pointer underline text-white text-right'>Ajouter un texte +</p>
+        <p onClick={newText} className='cursor-pointer underline text-white text-right mt-2'>Ajouter un texte +</p>
       </form>
 
-      <div className="pt-3 flex flex-col justify-between gap-2 relative z-50">
-        <button onClick={shareLink} className={`bg-green-700 p-2 w-full h-[30%] text-white`}>
-          PARTAGER
-        </button>
+      <div className="pt-3 flex flex-col justify-between gap-2">
         
-        <button onClick={copyLink} className='bg-red-950 p-2 w-full text-white'>COPIER LE LIEN</button>
+        <button onClick={copyLink} className='bg-red-950 p-2 w-full text-white'>COPIER LE LIEN DU MESSAGE</button>
+        <button onClick={shareLink} className={`bg-green-700 p-2 w-full h-[30%] text-white`}>
+          PARTAGER L'APPLICATION
+        </button>
       </div>
       {isVisible&&<AlertMessage handle={handleMessage} text={message} />}
       <AlertMy/>
